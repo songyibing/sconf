@@ -14,12 +14,19 @@ public class TestClass
 
     // 回调方法
     public void nameChanged() {
+    
         System.out.println("fiele value is changed to " + name);
+        
     }  
+    
 }
+
 配置代码如下：
+
 <bean class="com.sohu.sconf.Loader" init-method="load">
+
         <property name="id" value="123456"/>
+        
 </bean>
 
 <bean class="com.syb.test.TestClass"></bean>
