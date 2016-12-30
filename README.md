@@ -26,7 +26,7 @@ public class TestClass
         <property name="id" value="123456"/>       
 </bean>
 
-<bean class="com.syb.test.TestClass"></bean>
+<bean id="testClass"  class="com.syb.test.TestClass"></bean>
 ```
 
 （3）修改配置项的值。精力有限，尚未做web界面，目前只能通过linux命令或者zookeeper可视化工具对配置进行修改。修改完毕后，程序中的值也被修改，并回调【域名+Changed】方法。
