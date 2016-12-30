@@ -1,6 +1,9 @@
 #分布式配置管理
 
-##设计思路： 使用zookeeper做集中式配置存储，客户端启动后连接zookeeper，根据项目名称，监听对应的节点，并根据bean的域注解进行注册。开发人员通过web界面更改配置值，客户端收到事件后通过反射修改域值，并回调特定的接口。项目必须在spring环境下运行。
+##设计思路：
+使用zookeeper做集中式配置存储，客户端启动后连接zookeeper，根据项目名称，监听对应的节点，并根据bean的域注解进行注册。开发人员通过web界面更改配置值，客户端收到事件后通过反射修改域值，并回调特定的接口。项目必须在spring环境下运行。
+
+支持int short long String 类型的配置项。支持静态/非静态类的配置项。如果一个类只包含静态配置项，则无需在spring中为其定义bean。
 
 ##测试项目（sconf-test）运行方法:
 （1）搭建zookeeper环境,将zookeeper地址作为args.properties文件的zookeeper.url的属性值。
