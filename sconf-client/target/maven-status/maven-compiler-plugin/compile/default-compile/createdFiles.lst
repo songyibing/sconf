@@ -1,0 +1,4 @@
+com\sohu\sconf\Loader.class
+com\sohu\sconf\zookeeper\PathCreator.class
+com\sohu\sconf\zookeeper\PathCreator$Type.class
+com\sohu\sconf\scanner\AnnotationScanner.class
