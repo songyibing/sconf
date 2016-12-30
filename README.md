@@ -4,7 +4,7 @@
 ##使用方法：
 （1）将sconf-core 和 sconf-client 两个项目的jar包安装到本地仓库。
 
-（2）新建项目，创建一个类，类中的配置项以@Sconf标记，附带描述文字desc（描述文字可以任意写）。并以单例在spring中配置（要求按照spring默认规则命名对象，如StoreService命名为storeService)。同时，配置sconf的启动类com.sohu.sconf.Loader。
+（2）新建项目，创建一个类，类中的配置项以@Sconf标记，附带描述文字desc（描述文字可以任意写）。并以单例在spring中配置（要求按照spring默认规则命名对象，如StoreService命名为storeService)。同时，配置sconf的启动类com.sohu.sconf.Loader，指定项目id（与已有id不重复即可）。
 例如，类代码如下：
 ```Java
 package com.syb.test;
