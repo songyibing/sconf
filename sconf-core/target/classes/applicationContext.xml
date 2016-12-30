@@ -12,7 +12,7 @@
             http://www.springframework.org/schema/tx 
             http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
             http://www.springframework.org/schema/sca 
-            http://www.osoa.org/xmlns/sca/1.0/spring-sca.xsd">
+        >
 	
 	
 	

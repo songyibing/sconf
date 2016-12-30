@@ -6,23 +6,23 @@ package com.sohu.sconf.zookeeper;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.sohu.sconf.Loader;
-import com.sohu.sconf.core.utils.LogUtils;
-import com.sohu.sconf.core.utils.Logger;
 import org.apache.commons.lang.StringUtils;
+import org.apache.zookeeper.KeeperException;
+import org.apache.zookeeper.data.Stat;
 
+import com.sohu.sconf.Loader;
 import com.sohu.sconf.core.common.FieldLocator;
 import com.sohu.sconf.core.common.FieldTv;
 import com.sohu.sconf.core.common.FieldTvo;
 import com.sohu.sconf.core.enums.StatusEnum;
 import com.sohu.sconf.core.exception.SconfException;
-import com.sohu.sconf.core.zookeeper.DataModifier;
+import com.sohu.sconf.core.utils.LogUtils;
+import com.sohu.sconf.core.utils.Logger;
 import com.sohu.sconf.scanner.AnnotationScanner;
 
 /**
@@ -228,5 +228,16 @@ public class PathCreator {
         createNonStaticNode(projectPath, connection, zkNodeSet);
         createStaticNode(projectPath, connection, zkNodeSet);
         deleteObsoleteNode(connection, zkNodeSet);
+        try {
+            List<String> childrenList = connection.getZk().getChildren(projectPath, false);
+            for(String s : childrenList) {
+                connection.getZk().getData(projectPath + "/" + s, connection , new Stat());
+            }
+        } catch (KeeperException | InterruptedException e) {
+            
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+                
+        }
     }
 }

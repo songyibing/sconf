@@ -1,4 +1,7 @@
-com\sohu\sconf\Loader.class
-com\sohu\sconf\zookeeper\PathCreator.class
+com\sohu\sconf\zookeeper\ConnectionWatcher.class
 com\sohu\sconf\zookeeper\PathCreator$Type.class
 com\sohu\sconf\scanner\AnnotationScanner.class
+com\sohu\sconf\zookeeper\ConnectionWatcher$Type.class
+com\sohu\sconf\zookeeper\PathCreator.class
+com\sohu\sconf\zookeeper\DataModifier.class
+com\sohu\sconf\Loader.class

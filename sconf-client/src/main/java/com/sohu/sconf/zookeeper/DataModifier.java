@@ -2,7 +2,7 @@
 /*
  * Copyright (c) 2016 Sohu. All Rights Reserved
  */
-package com.sohu.sconf.core.zookeeper;
+package com.sohu.sconf.zookeeper;
 
 import java.nio.charset.Charset;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.sohu.sconf.core.enums.StatusEnum;
 import com.sohu.sconf.core.exception.SconfException;
 import com.sohu.sconf.core.utils.LogUtils;
 import com.sohu.sconf.core.utils.Logger;
-import com.sohu.sconf.core.watcher.ConnectionWatcher;
+
 
 /**
  * <p>
