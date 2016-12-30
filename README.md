@@ -6,6 +6,7 @@
 
 （2）新建项目，创建一个类，类中的配置项以@Sconf标记，附带描述文字desc（描述文字可以任意写）。并以单例在spring中配置（要求按照spring默认规则命名对象，如StoreService命名为storeService)。同时，配置sconf的启动类com.sohu.sconf.Loader。
 例如，类代码如下：
+```Java
 package com.syb.test;
 public class TestClass
 {
@@ -14,21 +15,18 @@ public class TestClass
 
     // 回调方法
     public void nameChanged() {
-    
-        System.out.println("fiele value is changed to " + name);
-        
-    }  
-    
+        System.out.println("fiele value is changed to " + name);    
+    }   
 }
+```
 
 配置代码如下：
-
+```
 <bean class="com.sohu.sconf.Loader" init-method="load">
-
-        <property name="id" value="123456"/>
-        
+        <property name="id" value="123456"/>       
 </bean>
 
 <bean class="com.syb.test.TestClass"></bean>
+```
 
 （3）修改配置项的值。精力有限，尚未做web界面，目前只能通过linux命令或者zookeeper可视化工具对配置进行修改。修改完毕后，程序中的值也被修改，并回调【域名+Changed】方法。
