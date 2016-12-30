@@ -1,10 +1,22 @@
 #分布式配置管理
 
 ##设计思路： 使用zookeeper做集中式配置存储，客户端启动后连接zookeeper，根据项目名称，监听对应的节点，并根据bean的域注解进行注册。开发人员通过web界面更改配置值，客户端收到事件后通过反射修改域值，并回调特定的接口。项目必须在spring环境下运行。
-##使用方法：
-（1）将sconf-core 和 sconf-client 两个项目的jar包安装到本地仓库。
 
-（2）新建项目，创建一个类，类中的配置项以@Sconf标记，附带描述文字desc（描述文字可以任意写）。并以单例在spring中配置（要求按照spring默认规则命名对象，如StoreService命名为storeService)。同时，配置sconf的启动类com.sohu.sconf.Loader，指定项目id（与已有id不重复即可）。
+##测试项目（sconf-test）运行方法:
+（1）搭建zookeeper环境,将zookeeper地址作为args.properties文件的zookeeper.url的属性值。
+
+（2）运行TestClass中的main方法。
+
+（3）修改zookeepe中节点```/project222/com.syb.test.TestClass_name```的值为```描述#int#10```
+
+（4）观察日志。
+
+##使用方法（参考sconf-test项目）：
+（1）搭建zookeeper环境，并新建项目，在src/main/resources下新建args.properties文件。将zookeeper地址作为zookeeper.url的属性值。
+
+（2）将sconf-core 和 sconf-client 两个项目的jar包安装到本地仓库。
+
+（3）创建一个类，类中的配置项以@Sconf标记，附带描述文字desc（描述文字可以任意写）。并以单例在spring中配置（要求按照spring默认规则命名对象，如StoreService命名为storeService)。同时，配置sconf的启动类com.sohu.sconf.Loader，指定项目id（与已有id不重复即可）。
 例如，类代码如下：
 ```Java
 package com.syb.test;
@@ -29,7 +41,7 @@ public class TestClass
 <bean id="testClass"  class="com.syb.test.TestClass"></bean>
 ```
 
-（3）修改配置项的值。精力有限，尚未做web界面，目前只能通过linux命令或者zookeeper可视化工具对配置进行修改。修改完毕后，程序中的值也被修改，并回调【域名+Changed】方法。
+（4）修改配置项的值。精力有限，尚未做web界面，目前只能通过linux命令或者zookeeper可视化工具对配置进行修改。修改完毕后，程序中的值也被修改，并回调【域名+Changed】方法。
 
 ##已知缺陷：
 1. 由于配置项所对应的域会被一个线程修改和多个线程读取，为保证可见性，需要加上volatile关键字。由于配置项读多写少，冲突很少发生，但volatile却始终在影响性能。
